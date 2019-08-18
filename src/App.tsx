@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
-import { StyleSheet, View, Dimensions, Image, Button, ActivityIndicator, ImageSourcePropType } from "react-native";
+import { View, Dimensions, Image, Button, ActivityIndicator, ImageSourcePropType } from "react-native";
+import styled from "styled-components"
 
 type pictureType = {
   portrait: ImageSourcePropType,
@@ -68,49 +69,47 @@ const App: React.FC = () => {
       getOrientation();
     });
   });
+  
+  const Container = styled(View)`
+    flex: 1;
+    justifyContent: "center";
+    alignItems: "center";
+    height: "100%";
+  `;
+
+  const StyledButton = styled(Button)`
+    position: "absolute"
+    top: "5px";
+    right: "5px";
+    zIndex: 1;
+  `;
+
+  const StyledActivityIndicator = styled(ActivityIndicator)`
+    position: "absolute";
+    flex: 1;
+    justifyContent: "center";
+    alignItems: "center";
+    height: ${orientation === 'portrait' ? "50px" : "100px"};
+  `;
 
   return (
-    <View style={styles.container}>
+    <Container>
       {!downloadingCloseButton &&
-        <View style={styles.StyledButton}>
-          <Button
-            onPress={pressCloseButton}
-            title="Закрыть"
-            color="#0000ff"
-            accessibilityLabel="Закрыть"
-          />
-        </View>
+        <StyledButton
+          onPress={pressCloseButton}
+          title="Закрыть"
+          color="#0000ff"
+          accessibilityLabel="Закрыть"
+        />
       }
-      <View ref={view} style={[styles.container, {backgroundColor: (orientation === 'portrait') ? '#1B5E20' : '#006064'}]}>
+      <Container ref={view} style={{backgroundColor: (orientation === 'portrait') ? '#1B5E20' : '#006064'}}>
         <Image style={{width: imgWidth, height: imgHeight}} source={presentPictureImageSourcePropType} />
-      </View>
-      {downloadingCloseButton && <View style={styles.StyledActivityIndicator}><ActivityIndicator size="large" color="#0000ff" /></View>}
-    </View>
+      </Container>
+      {downloadingCloseButton && <StyledActivityIndicator size="large" color="#0000ff" />}
+    </Container>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    height: "100%"
-  },
-  StyledButton: {
-    position: "absolute",
-    top: "5px",
-    right: "5px",
-    zIndex: 1
-  },
-  StyledActivityIndicator: {
-    position: "absolute",
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    height: (orientation === 'portrait') ? "50px" : "100px",
-    bottom: 0
-  }
-});
-
 export default App;
 
+ 
