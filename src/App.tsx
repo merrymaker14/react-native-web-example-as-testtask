@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { StyleSheet, View, Dimensions, Image, Button, ImageSourcePropType } from "react-native";
-import ProgressBar from "./components/ProgressBar"
+import { StyleSheet, View, Dimensions, Image, Button, ActivityIndicator, ImageSourcePropType } from "react-native";
 
 type pictureType = {
   portrait: ImageSourcePropType,
@@ -20,7 +19,6 @@ const App: React.FC = () => {
   const [imgWidth, setImgWidth] = useState(0);
   const [imgHeight, setImgHeight] = useState(0);
   const [downloadingCloseButton, setDownloadingCloseButton] = useState(true);
-  const [progress, setProgress] =  useState(0);
   const view = useRef(null);
 
   /** Get device orientation */
@@ -61,10 +59,6 @@ const App: React.FC = () => {
   useEffect(() => {
     getOrientation();
 
-    setInterval(() => {
-      setProgress(progress + 1)
-    }, 1000);
-
     setTimeout(() => {
       setDownloadingCloseButton(false)
     }, 3000);
@@ -78,20 +72,19 @@ const App: React.FC = () => {
   return (
     <View style={styles.container}>
       {!downloadingCloseButton &&
-        <View style={{position: "absolute", top: "5px", right: "5px", zIndex: 1}}>
+        <View style={styles.StyledButton}>
           <Button
             onPress={pressCloseButton}
             title="Закрыть"
-            color="blue"
+            color="#0000ff"
             accessibilityLabel="Закрыть"
           />
         </View>
-
       }
       <View ref={view} style={[styles.container, {backgroundColor: (orientation === 'portrait') ? '#1B5E20' : '#006064'}]}>
         <Image style={{width: imgWidth, height: imgHeight}} source={presentPictureImageSourcePropType} />
       </View>
-      {downloadingCloseButton && <ProgressBar progress={progress} />}
+      {downloadingCloseButton && <View style={styles.StyledActivityIndicator}><ActivityIndicator size="large" color="#0000ff" /></View>}
     </View>
   );
 };
@@ -102,6 +95,20 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     height: "100%"
+  },
+  StyledButton: {
+    position: "absolute",
+    top: "5px",
+    right: "5px",
+    zIndex: 1
+  },
+  StyledActivityIndicator: {
+    position: "absolute",
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    height: (orientation === 'portrait') ? "50px" : "100px",
+    bottom: 0
   }
 });
 
