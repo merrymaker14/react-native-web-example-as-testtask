@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.js": "/react-native-web-example-as-testtask/static/js/main.49e23ac8.chunk.js",
+    "main.js.map": "/react-native-web-example-as-testtask/static/js/main.49e23ac8.chunk.js.map",
+    "runtime~main.js": "/react-native-web-example-as-testtask/static/js/runtime~main.e2a881ad.js",
+    "runtime~main.js.map": "/react-native-web-example-as-testtask/static/js/runtime~main.e2a881ad.js.map",
+    "static/js/2.d3d3ee1c.chunk.js": "/react-native-web-example-as-testtask/static/js/2.d3d3ee1c.chunk.js",
+    "static/js/2.d3d3ee1c.chunk.js.map": "/react-native-web-example-as-testtask/static/js/2.d3d3ee1c.chunk.js.map",
+    "index.html": "/react-native-web-example-as-testtask/index.html",
+    "precache-manifest.3837869bbb16d517d92a600b8e20e521.js": "/react-native-web-example-as-testtask/precache-manifest.3837869bbb16d517d92a600b8e20e521.js",
+    "service-worker.js": "/react-native-web-example-as-testtask/service-worker.js",
+    "static/media/960x576_1.png": "/react-native-web-example-as-testtask/static/media/960x576_1.135d53c7.png",
+    "static/media/nc_ss19_620x960px_1.png": "/react-native-web-example-as-testtask/static/media/nc_ss19_620x960px_1.42d9b58d.png"
+  }
+}
